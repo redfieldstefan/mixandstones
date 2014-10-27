@@ -31,8 +31,56 @@ $(document).ready(function(){
 		$('html, body').animate({scrollTop: 750}, 400);
 	});
 
+	// HAMBURGER
+
+/*
+
+	$("#hamburger").click(function(){
+		
+		var contentWidth = $("#content").width();
+
+		$('#content').css('width', contentWidth);
+
+		$('#container').animate({"marginLeft": ["70%", 'easeOutExpo']}, {
+			duration:700
+		});
+
+		//$('#content').css('display','block');//
 
 
 
-})
+	});
+
+	$('#content').click(function(){
+
+		$('#container').animate ({'marginLeft': ['0', 'easeOutExpo']},{
+			duration: 700,
+			complete : function(){
+				$('content').css('width', 'auto');
+			}
+		});
+
+
+	});
+
+*/
+	var navOpen = false;
+
+	$('#hamburger').click(function(){
+		if (!navOpen) {
+			$('nav').animate({left: '0'}, 500);
+			// $('nav').addClass('navRight', 500);
+			$('.content').animate({marginLeft:'350'}, 500);
+			// $('#content').addClass('bodyRight', 500);
+			navOpen = true;
+		} else {
+			$('nav').animate({left: '-350'}, 500);
+			// $('nav').removeClass('navRight');
+			$('.content').animate({marginLeft:'0'}, 500);
+			// $('#content').removeClass('bodyRight');
+			navOpen = false;
+		};
+	});
+
+});
 
