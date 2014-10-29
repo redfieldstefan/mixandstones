@@ -1,43 +1,5 @@
-/* Header styles */
 
-
-body {
-	overflow-x: hidden;
-}
-
-header {
-	display: none;
-}
-
-nav {
-	left: 0;
-	margin-top: 0;
-}
-
-.content {
-	margin-left: 350px;
-}
-
-.headline-container {
-	width: 80%;
-	height: 125px;
-}
-
-#headline-list {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-
-.navRight {
-	left: 0;
-}
-
-.bodyRight {
-	margin-left: 350px;
-}
-
+/*RESPONSIVE*/
 
 #hamburger {
     border: 1px solid #374C77;
@@ -86,4 +48,48 @@ nav h1 {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	border-bottom: 1px solid white;
+}
+
+/* Header styles */
+
+
+
+
+
+
+body {
+	overflow-x: hidden;
+}
+
+header {
+	display: none;
+}
+
+nav {
+	left: 0;
+	margin-top: 0;
+}
+
+.content {
+	margin-left: 350px;
+}
+
+.headline-container {
+	width: 80%;
+	height: 125px;
+}
+
+#headline-list {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+.navRight {
+	left: 0;
+}
+
+.bodyRight {
+	margin-left: 350px;
 }
