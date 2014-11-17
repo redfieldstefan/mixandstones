@@ -9,10 +9,11 @@ var express = require('express'),
 	server;
 
 // Init
+require('./router')(app);
 server = http.createServer(app);
 
 // Set Mongo URLs
-// mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGO_URL || 'mongodb://localhost/links');
+mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGO_URL || 'mongodb://localhost/drinks');
 
 // Specify the static directory
 app.use(express.static(__dirname + (process.env.STATIC_DIR || '/dist')));
