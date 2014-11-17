@@ -12,7 +12,7 @@ var express = require('express'),
 server = http.createServer(app);
 
 // Set Mongo URLs
-mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGO_URL || 'mongodb://localhost/links');
+// mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGO_URL || 'mongodb://localhost/links');
 
 // Specify the static directory
 app.use(express.static(__dirname + (process.env.STATIC_DIR || '/dist')));
