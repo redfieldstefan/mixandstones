@@ -2,27 +2,62 @@
 
 $(document).ready(function(){
 
-	$('.headline-container ul li:nth-child(2)').click(function(event) {
+		var headlineOpen=false
+
+	$('.options-button').click(function(event){
+		if (!headlineOpen){
+		$('#headline-list').animate({marginTop:'125px'}, 500);
+	
+		$('.button-1').css({display: "none"});
+		$('.button-2').css({display: "inline"});
+		headlineOpen = true;
+		}
+		else {
+		$('#headline-list').animate({marginTop:'-75px'}, 500);
+		
+		$('.button-1').css({display: "inline"});
+		$('.button-2').css({display: "none"});
+		headlineOpen = false;
+
+		}
+	});
+
+
+
+	$('#headline-list .icon:nth-child(1)').click(function(event) {
     // Preventing default action of the event
     event.preventDefault();
     // Getting the height of the document
     var n = $(document).height();
-    $('html, body').animate({ scrollTop: 100 }, 200);
+    $('html, body').animate({ scrollTop: 100 }, 800);
+
 //                                       |    |
 //                                       |    --- duration (milliseconds) 
 //                                       ---- distance from the top
+		$('#headline-list').animate({marginTop:'-75px'}, 500);
+		$('.button-1').css({display: "inline"});
+		$('.button-2').css({display: "none"});
+		headlineOpen = false;
 	});
 
-	$('.headline-container ul li:nth-child(3)').click(function(event){
+	$('#headline-list .icon:nth-child(2)').click(function(event){
 		event.preventDefault();
 		var n = $(document).height();
-		$('html, body').animate({scrollTop: 800}, 400);
+		$('html, body').animate({scrollTop: 800}, 800);
+		$('#headline-list').animate({marginTop:'-75px'}, 500);
+		$('.button-1').css({display: "inline"});
+		$('.button-2').css({display: "none"});
+		headlineOpen = false;
 	});
 
-	$('.headline-container ul li:nth-child(4)').click(function(event){
+	$('#headline-list .icon:nth-child(3)').click(function(event){
 		event.preventDefault();
 		var n = $(document).height();
-		$('html, body').animate({scrollTop: 1500}, 400);
+		$('html, body').animate({scrollTop: 1500}, 800);
+		$('#headline-list').animate({marginTop:'-75px'}, 500);
+		$('.button-1').css({display: "inline"});
+		$('.button-2').css({display: "none"});
+		headlineOpen = false;
 	});
 
 	// RECIPE PAGE//
@@ -32,6 +67,8 @@ $(document).ready(function(){
 		var n = $(document).height();
 		$('html, body').animate({scrollTop: 750}, 400);
 	});
+
+
 
 	// HAMBURGER
 
