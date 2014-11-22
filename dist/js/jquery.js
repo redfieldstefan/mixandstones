@@ -1,3 +1,5 @@
+'use strict';
+
 $(document).ready(function(){
 
 	$('.headline-container ul li:nth-child(2)').click(function(event) {
@@ -69,17 +71,13 @@ $(document).ready(function(){
 	$('#hamburger').click(function(){
 		if (!navOpen) {
 			$('nav').animate({left: '0'}, 500);
-			// $('nav').addClass('navRight', 500);
 			$('.content').animate({marginLeft:'350'}, 500);
-			// $('#content').addClass('bodyRight', 500);
 			navOpen = true;
 		} else {
 			$('nav').animate({left: '-350'}, 500);
-			// $('nav').removeClass('navRight');
 			$('.content').animate({marginLeft:'0'}, 500);
-			// $('#content').removeClass('bodyRight');
 			navOpen = false;
-		};
+		}
 	});
 
 });

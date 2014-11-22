@@ -1,0 +1,16 @@
+{
+	"strict": true,
+	"undef": true,
+	"node": true,
+	"globals": {
+    /* MOCHA */
+    "describe": false,
+    "it": false,
+    "$" : false,
+    "document": false,
+    "before": false,
+    "beforeEach": false,
+    "after": false,
+    "afterEach": false
+  }
+}

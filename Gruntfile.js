@@ -23,6 +23,16 @@ module.exports = function(grunt) {
                 filter: 'isFile'
             }
         },
+        jshint: {
+            files: [
+                'app/**/*.js',
+                'server.js',
+                'router.js'
+            ],
+            options: {
+                'jshintrc': true
+            }
+        },
         sass: {
             build: {
                 files: {
@@ -54,6 +64,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('default', [
+        'jshint',
         'sass',
         'clean',
         'copy',
