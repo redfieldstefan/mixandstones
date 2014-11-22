@@ -2,7 +2,7 @@
 
 $(document).ready(function(){
 
-	var headlineOpen=false
+	var headlineOpen=false;
 
 	$('.options-button').click(function(event){
 		if (!headlineOpen){
