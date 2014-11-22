@@ -7,14 +7,13 @@ var port = require('../../server').port,
   chaihttp = require('chai-http'),
   localUrl = 'http://localhost:' + port,
   apiPath = '/api/cocktails/',
-  testId,
-  testUrl;
+  testId;
 
 chai.use(chaihttp);
 
 describe('The cocktail API', function() {
 
-  it('Adds new cocktails via POST', function(done) {
+  it('Adds new cocktails (via POST)', function(done) {
     chai.request(localUrl)
     .post(apiPath)
     .send({
@@ -31,13 +30,12 @@ describe('The cocktail API', function() {
       expect(res.body).to.have.property('_id');
       
       testId = res.body._id;
-      testUrl = res.body.url;
       
       done();
     });
   });
 
-  it('Returns cocktails via GET', function(done) {
+  it('Returns individual cocktails (via GET)', function(done) {
     chai.request(localUrl)
     .get(apiPath + testId)
     .end(function(err, res) {
@@ -48,7 +46,25 @@ describe('The cocktail API', function() {
     });
   });
 
-  it('Updates cocktails via PUT', function(done) {
+  it('Searches for cocktails that match an ingredient list (via GET)', function(done) {
+    chai.request(localUrl)
+    .get('/api/search')
+    .send({
+      'ingredients': [
+        'gin',
+        'peanut butter'
+      ]
+    })
+    .end(function(err, res) {
+      expect(err).to.be.null;
+      expect(res).to.have.status(200);
+      expect(Array.isArray(res.body)).to.eql(true);
+      expect(res.body[0].name).to.eql('Fictional cocktail');
+      done();
+    });
+  });
+
+  it('Updates cocktails (via PUT)', function(done) {
     chai.request(localUrl)
     .put(apiPath + testId)
     .send({
@@ -73,7 +89,7 @@ describe('The cocktail API', function() {
     });
   });
 
-  it('Removes cocktails via DELETE', function(done) {
+  it('Removes cocktails (via DELETE)', function(done) {
     chai.request(localUrl)
     .del(apiPath + testId)
     .end(function(err, res) {

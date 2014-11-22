@@ -40,6 +40,19 @@ module.exports = function(app) {
   });
 
   /**
+   * Search (GET)
+   */
+
+  app.get('/api/search', function(req, res) {
+    Cocktail.find({ ingredients: req.body.ingredients }, function(err, dbResponse) {
+      if (err) {
+        return err;
+      }
+      return res.status(200).json(dbResponse);
+    });
+  });
+
+  /**
    * Update (PUT)
    */
 
