@@ -8,6 +8,7 @@
     "it": false,
     "$" : false,
     "document": false,
+    "angular": false,
     "before": false,
     "beforeEach": false,
     "after": false,
