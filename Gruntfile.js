@@ -1,6 +1,14 @@
 module.exports = function(grunt) {
     'use strict';
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+    
+    var jsToLint = [
+        'models/**/*.js',
+        'test/api/*.js',
+        'server.js',
+        'cocktailRouter.js'
+    ];
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
@@ -24,14 +32,13 @@ module.exports = function(grunt) {
             }
         },
         jshint: {
-            files: [
-                'app/**/*.js',
-                'server.js',
-                'router.js'
-            ],
+            files: jsToLint,
             options: {
                 'jshintrc': true
             }
+        },
+        jscs: {
+            src: jsToLint
         },
         sass: {
             build: {
@@ -65,6 +72,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', [
         'jshint',
+        'jscs',
         'sass',
         'clean',
         'copy',

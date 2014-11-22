@@ -6,18 +6,18 @@ $(document).ready(function(){
 
 	$('.options-button').click(function(event){
 		if (!headlineOpen){
-		$('#headline-list').animate({marginTop:'125px'}, 500);
-	
-		$('.button-1').css({display: "none"});
-		$('.button-2').css({display: "inline"});
-		headlineOpen = true;
+			$('#headline-list').animate({marginTop:'125px'}, 500);
+		
+			$('.button-1').css({display: "none"});
+			$('.button-2').css({display: "inline"});
+			headlineOpen = true;
 		}
 		else {
-		$('#headline-list').animate({marginTop:'-75px'}, 500);
-		
-		$('.button-1').css({display: "inline"});
-		$('.button-2').css({display: "none"});
-		headlineOpen = false;
+			$('#headline-list').animate({marginTop:'-75px'}, 500);
+			
+			$('.button-1').css({display: "inline"});
+			$('.button-2').css({display: "none"});
+			headlineOpen = false;
 
 		}
 	});
