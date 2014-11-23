@@ -16,7 +16,9 @@ module.exports = function(app) {
   app.post(apiUrl, function(req, res) {
     var cocktail = new Cocktail({
       name: req.body.name,
-      ingredients: req.body.ingredients.sort(),
+      ingredients: req.body.ingredients ?
+        req.body.ingredients.sort() :
+        [],
       url: req.body.name
         .toLowerCase()
         .replace(/\s/g, '-')
