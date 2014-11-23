@@ -34,7 +34,8 @@ The white stripes in the hamburger button
 
 nav {
 	left: -350px;
-	width: 350px;
+	width: 24%;
+  min-width: 325px;
 	background: url('../img/menu-pattern.jpg');
 	margin-top: 25px;
 	top: 0px;
@@ -66,13 +67,14 @@ header {
 }
 
 nav {
+  width: 24%;
 	left: 0;
 	margin-top: 0;
 	height: 100%;
 }
 
 .content {
-	margin-left: 350px;
+	margin-left: 347px;
 }
 
 .headline-container {
