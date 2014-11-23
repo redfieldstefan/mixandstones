@@ -1,6 +1,6 @@
 'use strict';
 
-var Cocktail = require('./models/cocktailModel');
+var Cocktail = require('../models/cocktailModel');
 
 module.exports = function(app) {
 

@@ -10,7 +10,7 @@ var express = require('express'),
 
 // Init
 app.use(bodyparser.json());
-require('./cocktailRouter')(app);
+require('./routes/api')(app);
 server = http.createServer(app);
 
 // Set Mongo URLs
