@@ -1,6 +1,45 @@
 'use strict';
 
-var Cocktail = require('./models/cocktailModel');
+var Cocktail = require('../models/cocktailModel'),
+  urlify,
+  prepForDb;
+
+/**
+ * Helper function: formats cocktail names for URL routing
+ *
+ * e.g., 'Whiskey, neat' -> 'whiskey-neat'
+ *
+ * @param {String} cocktailName   The name to be formatted
+ * @returns {String}              The URL-ready version
+ */
+
+urlify = function(cocktailName) {
+  return cocktailName
+    .toLowerCase()
+    .replace(/\s/g, '-') // Spaces -> hyphens
+    .replace(/[^A-Za-z0-9\-]/g, '') // Removes everything that's not a letter, number, or hyphen
+    .replace(/-{2,}/g, '-'); // Cleans up double (or more) hyphens
+};
+
+/**
+ * Helper function: standardizes data for new and updated cocktails
+ *
+ * @param {Object} cocktail   The new cocktail to prep (usually req.body)
+ * @returns {Object}          The cocktail with sorted ingredients and routing-ready URL string
+ */
+
+prepForDb = function(cocktail) {
+  return {
+    name: cocktail.name,
+    url: urlify(cocktail.name),
+    description: cocktail.description ?
+      cocktail.description :
+      '',
+    ingredients: cocktail.ingredients ?
+      cocktail.ingredients.sort() :
+      []
+  };
+};
 
 module.exports = function(app) {
 
@@ -14,36 +53,13 @@ module.exports = function(app) {
    */
 
   app.post(apiUrl, function(req, res) {
-    var cocktail = new Cocktail({
-      name: req.body.name,
-      ingredients: req.body.ingredients.sort(),
-      url: req.body.name
-        .toLowerCase()
-        .replace(/\s/g, '-')
-    });
+    var cocktail = new Cocktail(prepForDb(req.body));
     cocktail.save(function(err, dbResponse) {
       if (err) {
         return res.status(500).json(err);
       } 
       return res.status(200).json(dbResponse);
     });
-  });
-
-  /**
-   * Returns a single cocktail from the db
-   *
-   * @param {String} req.params.cocktail    The URL-formatted cocktail name
-   * @returns {Object}                      The matching cocktail
-   */
-
-  app.get(apiUrl + ':cocktail', function(req, res) {
-    Cocktail.findOne({ url: req.params.cocktail }, 
-      function(err, dbResponse) {
-        if (err) {
-          return res.status(500).json(err);
-        }
-        return res.status(200).json(dbResponse);
-      });
   });
 
   /**
@@ -72,13 +88,7 @@ module.exports = function(app) {
    */
 
   app.put(apiUrl + ':id', function(req, res) {
-    var updatedDrink = {
-      name: req.body.name,
-      ingredients: req.body.ingredients.sort(),
-      url: req.body.name
-        .toLowerCase()
-        .replace(/\s/g, '-')
-    };
+    var updatedDrink = prepForDb(req.body);
     Cocktail.findOneAndUpdate({ _id: req.params.id }, 
       updatedDrink, 
       function(err, dbResponse) {

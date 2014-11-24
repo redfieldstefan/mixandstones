@@ -36,17 +36,6 @@ describe('The cocktail API', function() {
     });
   });
 
-  it('Can return an individual cocktail', function(done) {
-    chai.request(localUrl)
-    .get(apiPath + testDrink)
-    .end(function(err, res) {
-      expect(err).to.be.null;
-      expect(res).to.have.status(200);
-      expect(res.body.name).to.eql('Fictional cocktail');
-      done();
-    });
-  });
-
   it('Can find cocktails that match an ingredient list', 
     function(done) {
       chai.request(localUrl)

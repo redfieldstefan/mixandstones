@@ -4,9 +4,9 @@ module.exports = function(grunt) {
     
     var jsToLint = [
         'models/**/*.js',
-        'test/api/*.js',
+        'test/**/*.js',
+        'routes/**/*.js',
         'server.js',
-        'cocktailRouter.js'
     ];
 
     grunt.initConfig({
@@ -47,6 +47,17 @@ module.exports = function(grunt) {
                 }
             }
         },
+        // browserify: {
+        //     options: {
+        //         debug: true,
+        //         transform: [ 'reactify', 'debowerify' ],
+        //         extensions: [ '.jsx' ],
+        //     },
+        //     dev: {
+        //         src: [ 'app/js/app.js' ],
+        //         dest: 'dist/scripts.js'
+        //     }
+        // },
         express: {
             dev: {
                 options: {
@@ -65,6 +76,7 @@ module.exports = function(grunt) {
                     'sass',
                     'clean',
                     'copy',
+                    'browserify:dev'
                 ]
             }
         }
@@ -76,6 +88,7 @@ module.exports = function(grunt) {
         'sass',
         'clean',
         'copy',
+        // 'browserify:dev',
         'express:dev',
         'watch'
     ]);
