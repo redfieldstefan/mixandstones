@@ -8,9 +8,12 @@ var express = require('express'),
 	port,
 	server;
 
-// Init
 app.use(bodyparser.json());
+
+// Routing
 require('./routes/api')(app);
+require('./routes/render')(app);
+
 server = http.createServer(app);
 
 // Set Mongo URLs
