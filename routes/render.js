@@ -4,14 +4,28 @@ require('node-jsx').install({
   extension: '.jsx' 
 });
 
-var Cocktail = require('../models/cocktailModel'),
-  React = require('react'),
-  cocktailComponent = React.createFactory(require('../components/cocktail.jsx'));
+var Cocktail = require('../models/cocktailModel');
 
 module.exports = function(app) {
   
   /**
-   * Renders a cocktail page using React (server side!)
+   * Renders the index page using Handlebars
+   */
+
+  // app.get('/', function(req, res) {
+  //   res.render('index');
+  // });
+
+  /**
+   * Renders the start page
+   */
+
+  app.get('/home', function(req, res) {
+    res.render('home');
+  });
+
+  /**
+   * Renders an individual cocktail page
    *
    * @param {String} req.params.cocktail    The URL-formatted cocktail name
    * @returns                               The rendered HTML
@@ -26,16 +40,13 @@ module.exports = function(app) {
         return res.status(500).json(err);
       }
 
-      // Render React component with cocktail params
-      var html = React.renderToStaticMarkup(cocktailComponent({
+      // Pass rendered component & other params into Handlebars
+      res.render('cocktail', {
         name: dbResponse.name,
-        url: dbResponse.url,
         description: dbResponse.description,
         ingredients: dbResponse.ingredients
-      }));
+      });
 
-      // Return rendered HTML
-      return res.status(200).send(html);
     });
   });
 

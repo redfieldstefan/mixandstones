@@ -4,11 +4,18 @@ var express = require('express'),
 	http = require('http'),
 	bodyparser = require('body-parser'),
 	mongoose = require('mongoose'),
+  hbs = require('express-handlebars'),
 	app = express(),
 	port,
 	server;
 
 app.use(bodyparser.json());
+
+// Set handlebars as the templating engine
+app.engine('handlebars', hbs({
+  defaultLayout: 'main'
+}));
+app.set('view engine', 'handlebars');
 
 // Routing
 require('./routes/api')(app);

@@ -75,8 +75,8 @@ module.exports = function(grunt) {
                 tasks: [
                     'sass',
                     'clean',
-                    'copy',
-                    'browserify:dev'
+                    'copy'//,
+                    // 'browserify:dev'
                 ]
             }
         }
