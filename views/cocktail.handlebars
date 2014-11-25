@@ -1,0 +1,51 @@
+{{> nav}}
+<div class="side-body">
+
+  <div class="recipe-headline">
+    <h1>{{{ name }}}</h1>
+  </div>
+
+  <div class="recipe-top-row">
+    <img src="../img/classic-old-fashioned-background.jpg"/>
+    <div class="recipe-text">
+      <h3>Some tagline here</h3>
+      <p>{{{ description }}}</p>
+      <div class="recipe-button">
+        <p>Ingredients</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="recipe-row-2">
+    <div class="diagram">
+      <img src="../img/classic-old-fashioned-diagram.png"/>
+    </div>
+    <div class="recipe-ingredients">
+      <h1>Ingredients:</h1>
+      <ul>
+        {{#each ingredients}}
+          <li>{{{this}}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+
+  <div class="recipe-row-4">
+    <!-- Repeat for each step: -->
+    <!--
+    <div class="step">
+      <div class="step-image">
+        <img src=""/>
+      </div>
+      <div class="step-text">
+        <h3>Step 1</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+      </div>
+    </div> 
+    -->
+    <div class="recipe-ad">
+      <div class="banner-ad"></div>
+    </div>
+  </div>
+
+</div>
