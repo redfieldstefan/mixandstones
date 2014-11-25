@@ -39,6 +39,11 @@ module.exports = function(app) {
       if (err) {
         return res.status(500).json(err);
       }
+      if (!dbResponse) {
+        return res.status(200).json({
+          msg: 'No saved cocktail matches that route'
+        });
+      }
 
       // Pass rendered component & other params into Handlebars
       res.render('cocktail', {
