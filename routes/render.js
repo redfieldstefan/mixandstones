@@ -12,9 +12,9 @@ module.exports = function(app) {
    * Renders the index page using Handlebars
    */
 
-  app.get('/', function(req, res) {
-    res.render('index');
-  });
+  // app.get('/', function(req, res) {
+  //   res.render('index');
+  // });
 
   /**
    * Renders the start page
