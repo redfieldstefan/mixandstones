@@ -20,7 +20,7 @@
     "body-parser": "^1.8.1",
     "express": "^4.10.0",
     "express-handlebars": "^1.1.0",
-    "mongoose": "^3.8.18",
+    "mongoose": "^3.8.18"
   },
   "devDependencies": {
     "chai": "^1.10.0",
@@ -33,6 +33,6 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-express-server": "^0.4.19",
     "grunt-jscs": "^0.8.1",
-    "matchdep": "*",
+    "matchdep": "*"
   }
 }
