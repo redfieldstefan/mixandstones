@@ -846,7 +846,8 @@ nav {
   left: -350px;
   width: 24%;
   min-width: 325px;
-  background: url("../img/menu-pattern.jpg");
+  /*background: url('../img/menu-pattern.jpg');*/
+  background: url("../img/wave-background.jpg");
   margin-top: 25px;
   top: 0px;
   position: fixed; }
