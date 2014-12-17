@@ -1,6 +1,7 @@
 'use strict';
 
 var Cocktail = require('../models/cocktailModel'),
+  Ingredient = require('../models/ingredientModel'),
   urlify,
   prepForDb;
 
@@ -56,8 +57,29 @@ module.exports = function(app) {
     var cocktail = new Cocktail(prepForDb(req.body));
     cocktail.save(function(err, dbResponse) {
       if (err) {
-        return res.status(500).json(err);
-      } 
+        throw err;
+      }
+
+      /**
+       * Saves each ingredient if it doesn't already exist
+       */
+
+      dbResponse.ingredients.forEach(function(ingredient) {
+        Ingredient.find({ name: ingredient }, function(err, dbResponse) {
+          if (err) {
+            throw err;
+          }
+          if (!dbResponse.length) {
+            console.log('saving new ingredient: ' + ingredient);
+            var newIngredient = new Ingredient({ name: ingredient });
+            newIngredient.save(function(err) {
+              if (err) {
+                throw err;
+              }
+            });
+          }
+        });
+      });
       return res.status(200).json(dbResponse);
     });
   });
@@ -71,13 +93,20 @@ module.exports = function(app) {
    */
 
   app.get('/api/search', function(req, res) {
-    Cocktail.find({ ingredients: req.body.ingredients.sort() }, 
-      function(err, dbResponse) {
-        if (err) {
-          return err;
+    Cocktail.find({
+      ingredients: {
+        $not: {
+          $elemMatch: {
+            $nin: req.body.ingredients
+          }
         }
-        return res.status(200).json(dbResponse);
-      });
+      }
+    }, function(err, dbResponse) {
+      if (err) {
+        return err;
+      }
+      return res.status(200).json(dbResponse);
+    });
   });
 
   /**
@@ -93,7 +122,7 @@ module.exports = function(app) {
       updatedDrink, 
       function(err, dbResponse) {
         if (err) {
-          return res.status(500).json(err);
+          throw err;
         }
         return res.status(200).json(dbResponse);
     });
@@ -109,7 +138,7 @@ module.exports = function(app) {
   app.delete(apiUrl + ':id', function(req, res) {
     Cocktail.remove({ _id: req.params.id }, function(err) {
       if (err) {
-        return res.status(500).json(err);
+        throw err;
       }
       return res.status(200).json({ 'msg': 'Cocktail removed from db' });
     });
