@@ -1,9 +1,5 @@
 'use strict';
 
-require('node-jsx').install({ 
-  extension: '.jsx' 
-});
-
 var Cocktail = require('../models/cocktailModel');
 
 module.exports = function(app) {
