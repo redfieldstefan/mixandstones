@@ -49,6 +49,7 @@ module.exports = function(grunt) {
         },
         browserify: {
             options: {
+                transform: ['hbsfy'],
                 debug: true,
             },
             dev: {
