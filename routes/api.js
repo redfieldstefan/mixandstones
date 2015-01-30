@@ -84,6 +84,15 @@ module.exports = function(app) {
     });
   });
 
+  app.get('/api/ingredients', function(req, res) {
+    Ingredient.find({}, function(err, dbResponse) {
+      if (err) {
+        return err;
+      }
+      return res.status(200).json(dbResponse);
+    });
+  });
+
   /**
    * Returns an array of cocktails whose ingredients match those
    * the user has available
@@ -92,12 +101,13 @@ module.exports = function(app) {
    * @returns {Array}                       All matching cocktails
    */
 
-  app.get('/api/search', function(req, res) {
+  app.get('/api/search/:ingredients', function(req, res) {
+    var ingredients = JSON.parse(req.params.ingredients);
     Cocktail.find({
       ingredients: {
         $not: {
           $elemMatch: {
-            $nin: req.body.ingredients
+            $nin: ingredients
           }
         }
       }

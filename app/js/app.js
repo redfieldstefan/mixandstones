@@ -1,10 +1,16 @@
 var Backbone = require('backbone'),
   $ = require('jquery'),
-  test = {},
-  // test.test = $,
-  DefaultView = require('./views/default');
+  IngredientsView = require('./views/ingredients'),
+  IngredientsCollection = require('./collections/ingredients');
 
 Backbone.$ = $;
 
-var defaultView = new DefaultView();
-$('#test').html(defaultView.$el);
+var ingredientsView = new IngredientsView({
+  collection: new IngredientsCollection()
+});
+ingredientsView.collection.fetch({
+  success: function () {
+    ingredientsView.render();
+    $('#test').html(ingredientsView.$el);
+  }
+});
