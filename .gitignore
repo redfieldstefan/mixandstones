@@ -3,3 +3,4 @@ node_modules
 .sass-cache/
 data
 bower_components
+dist/
