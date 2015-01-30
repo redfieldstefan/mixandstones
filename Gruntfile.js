@@ -47,17 +47,16 @@ module.exports = function(grunt) {
                 }
             }
         },
-        // browserify: {
-        //     options: {
-        //         debug: true,
-        //         transform: [ 'reactify', 'debowerify' ],
-        //         extensions: [ '.jsx' ],
-        //     },
-        //     dev: {
-        //         src: [ 'app/js/app.js' ],
-        //         dest: 'dist/scripts.js'
-        //     }
-        // },
+        browserify: {
+            options: {
+                transform: ['hbsfy'],
+                debug: true,
+            },
+            dev: {
+                src: [ 'app/js/app.js' ],
+                dest: 'dist/scripts.js'
+            }
+        },
         express: {
             dev: {
                 options: {
@@ -75,8 +74,8 @@ module.exports = function(grunt) {
                 tasks: [
                     'sass',
                     'clean',
-                    'copy'//,
-                    // 'browserify:dev'
+                    'copy',
+                    'browserify:dev'
                 ]
             }
         }
@@ -88,7 +87,7 @@ module.exports = function(grunt) {
         'sass',
         'clean',
         'copy',
-        // 'browserify:dev',
+        'browserify:dev',
         'express:dev',
         'watch'
     ]);
