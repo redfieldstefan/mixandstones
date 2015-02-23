@@ -1,7 +1,8 @@
 var Backbone = require('backbone'),
   CocktailModel = require('../models/cocktail'),
   CocktailsCollection = require('../collections/cocktails'),
-  MatchesView = require('./matches-view');
+  MatchesView = require('./matches-view'),
+  _ = require('lodash');
 
 module.exports = Backbone.View.extend({
 
@@ -42,7 +43,15 @@ module.exports = Backbone.View.extend({
         description: description,
         ingredients: ingredients
       });
-      newCocktail.save();
+      newCocktail.save({}, {
+        success: _.bind(function () {
+          this.collection.fetch({
+            success: _.bind(function () {
+              this.render();
+            }, this)
+          });
+        }, this)
+      });
     }
   },
 
