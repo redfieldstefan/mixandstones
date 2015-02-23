@@ -1,4 +1,5 @@
 var Backbone = require('backbone'),
+  CocktailModel = require('../models/cocktail'),
   CocktailsCollection = require('../collections/cocktails'),
   MatchesView = require('./matches-view');
 
@@ -14,7 +15,8 @@ module.exports = Backbone.View.extend({
       }
       console.log(this._ingredients);
     },
-    'click button': function () {
+
+    'click #get-recommendation': function () {
       var cocktailsCollection = new CocktailsCollection({
         ingredients: this._ingredients
       });
@@ -28,6 +30,19 @@ module.exports = Backbone.View.extend({
           console.log(cocktailsCollection);
         }
       });
+    },
+
+    'click #create-cocktail': function () {
+      var name = this.$("input#name").val(),
+        description = this.$("input#description").val(),
+        ingredients = this.$("input#ingredients").val().split(",");
+
+      var newCocktail = new CocktailModel({
+        name: name,
+        description: description,
+        ingredients: ingredients
+      });
+      newCocktail.save();
     }
   },
 

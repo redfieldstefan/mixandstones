@@ -2,11 +2,20 @@
 
 <ul>
   {{#each collection}}
-    <li data-ingredient-target={{this.name}}>{{this.name}}</li>
+    <li data-ingredient-target="{{this.name}}">{{this.name}}</li>
   {{/each}}
 </ul>
 
-<button>test</button>
+<button id="get-recommendation">test</button>
+
+<h2>Add a cocktail:</h2>
+
+<form id="new-cocktail">
+  <input type="text" id="name" placeholder="Cocktail name"></br>
+  <input type="text" id="description" placeholder="Cocktail description"></br>
+  <input type="text" id="ingredients" placeholder="Cocktail ingredients, separated by commas"></br>
+  <button id="create-cocktail" type="button">Submit</button>
+</form>
 
 <div id="matches">
 </div>
